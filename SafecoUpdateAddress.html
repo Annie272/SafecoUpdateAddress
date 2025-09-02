@@ -261,7 +261,7 @@ Mailing Address Information</h3>
       <h4 class="location-label text-lg font-normal mb-4 text-gray-600">Location 1</h4>
       <div class="mb-2">
       <label for="addressLine1" class="block text-sm font-semibold mb-1">Address Line 1 <span class="text-red-600">*</span></label>
-      <input type="text" name="addressLine1" id="addressLine1" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
+      <input type="text" name="addressLine1" id="addressLine1" maxlength="30" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
     </div>
 
     <div class="mb-2">
@@ -284,11 +284,76 @@ Mailing Address Information</h3>
         <label for="state" class="block text-sm font-semibold mb-1">State <span class="text-red-600">*</span></label>
         <select name="state" id="state" required class="w-full p-2 border border-gray-300 rounded-lg mb-2">
           <option value="">--None--</option>
-          <option>Arizona</option>
-          <option>Alabama</option>
-          <option>Alaska</option>
-          <option>Alberta</option>
-          <!-- Add all other states -->
+             <option value="Arizona">Arizona</option>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Alberta">Alberta</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Dist Of Columbia">Dist Of Columbia</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Guam">Guam</option>
+            <option value="Hawaii">Hawaii</option>
+            <option value="Idaho">Idaho</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option>
+            <option value="International">International</option>
+            <option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option>
+            <option value="Maine">Maine</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="Maryland">Maryland</option>
+            <option value="Massachusetts">Massachusetts</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Michigan">Michigan</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Mississippi">Mississippi</option>
+            <option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option>
+            <option value="Nebraska">Nebraska</option>
+            <option value="Nevada">Nevada</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="New Hampshire">New Hampshire</option>
+            <option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="New York">New York</option>
+            <option value="Newfoundland">Newfoundland</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="North Dakota">North Dakota</option>
+            <option value="Northwest Territories">Northwest Territories</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Nunavut">Nunavut</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Oregon">Oregon</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Prince Edward Island">Prince Edward Island</option>
+            <option value="Puerto Rico">Puerto Rico</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Rhode Island">Rhode Island</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+            <option value="South Carolina">South Carolina</option>
+            <option value="South Dakota">South Dakota</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Texas">Texas</option>
+            <option value="Utah">Utah</option>
+            <option value="Vermont">Vermont</option>
+            <option value="Virgin Islands">Virgin Islands</option>
+            <option value="Virginia">Virginia</option>
+            <option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option>
+            <option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+            <option value="Yukon Territory">Yukon Territory</option>
+            <option value="District of Columbia">District of Columbia</option>
            
         </select>
       </div>
@@ -300,12 +365,12 @@ Mailing Address Information</h3>
       <h4 class="location-label text-lg font-normal mb-4 text-gray-600">Location 2</h4>
       <div class="mb-2">
       <label for="addressLine12" class="block text-sm font-semibold mb-1">Address Line 1 <span class="text-red-600">*</span></label>
-      <input type="text" name="addressLine12" id="addressLine12" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
+      <input type="text" name="addressLine12" id="addressLine12" maxlength="30" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
     </div>
 
     <div class="mb-2">
       <label for="addressLine22" class="block text-sm font-semibold mb-1">Address Line 2</label>
-      <input type="text" name="addressLine22" id="addressLine22" class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
+      <input type="text" name="addressLine22" id="addressLine22" maxlength="30" class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -323,54 +388,83 @@ Mailing Address Information</h3>
         <label for="state2" class="block text-sm font-semibold mb-1">State <span class="text-red-600">*</span></label>
         <select name="state2" id="state2" required class="w-full p-2 border border-gray-300 rounded-lg mb-2">
           <option value="">--None--</option>
-          <option>Arizona</option>
-          <option>Alabama</option>
-          <option>Alaska</option>
-          <option>Alberta</option>
-          <!-- Add all other states -->
+             <option value="Arizona">Arizona</option>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Alberta">Alberta</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Dist Of Columbia">Dist Of Columbia</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Guam">Guam</option>
+            <option value="Hawaii">Hawaii</option>
+            <option value="Idaho">Idaho</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option>
+            <option value="International">International</option>
+            <option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option>
+            <option value="Maine">Maine</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="Maryland">Maryland</option>
+            <option value="Massachusetts">Massachusetts</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Michigan">Michigan</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Mississippi">Mississippi</option>
+            <option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option>
+            <option value="Nebraska">Nebraska</option>
+            <option value="Nevada">Nevada</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="New Hampshire">New Hampshire</option>
+            <option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="New York">New York</option>
+            <option value="Newfoundland">Newfoundland</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="North Dakota">North Dakota</option>
+            <option value="Northwest Territories">Northwest Territories</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Nunavut">Nunavut</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Oregon">Oregon</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Prince Edward Island">Prince Edward Island</option>
+            <option value="Puerto Rico">Puerto Rico</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Rhode Island">Rhode Island</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+            <option value="South Carolina">South Carolina</option>
+            <option value="South Dakota">South Dakota</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Texas">Texas</option>
+            <option value="Utah">Utah</option>
+            <option value="Vermont">Vermont</option>
+            <option value="Virgin Islands">Virgin Islands</option>
+            <option value="Virginia">Virginia</option>
+            <option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option>
+            <option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+            <option value="Yukon Territory">Yukon Territory</option>
+            <option value="District of Columbia">District of Columbia</option>
         </select>
       </div>
     </div>
     <hr class="border-t border-gray-300 my-4" />
     </div>
 
-    <div id="location3" class="location-section hidden">
-      <h4 class="location-label text-lg font-normal mb-4 text-gray-600">Location 3</h4>
-      <div class="mb-2">
-      <label for="addressLine13" class="block text-sm font-semibold mb-1">Address Line 1 <span class="text-red-600">*</span></label>
-      <input type="text" name="addressLine13" id="addressLine13" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
-    </div>
-
-    <div class="mb-2">
-      <label for="addressLine23" class="block text-sm font-semibold mb-1">Address Line 2</label>
-      <input type="text" name="addressLine23" id="addressLine23" class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div>
-        <label for="zipCode3" class="block text-sm font-semibold mb-1">ZIP Code <span class="text-red-600">*</span></label>
-        <input type="text" name="zipCode3" id="zipCode3" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
-      </div>
-
-      <div>
-        <label for="city3" class="block text-sm font-semibold mb-1">City <span class="text-red-600">*</span></label>
-        <input type="text" name="city3" id="city3" required class="w-full p-2 border border-gray-300 rounded-lg mb-2" />
-      </div>
-
-      <div>
-        <label for="state3" class="block text-sm font-semibold mb-1">State <span class="text-red-600">*</span></label>
-        <select name="state3" id="state3" required class="w-full p-2 border border-gray-300 rounded-lg mb-2">
-          <option value="">--None--</option>
-          <option>Arizona</option>
-          <option>Alabama</option>
-          <option>Alaska</option>
-          <option>Alberta</option>
-          <!-- Add all other states -->
-        </select>
-      </div>
-    </div>
-    <hr class="border-t border-gray-300 my-4" />
-</div>
+   
     <button 
       id="addGarageLocationBtn" 
       type="button"
@@ -379,6 +473,9 @@ Mailing Address Information</h3>
       <span class="text-lg font-bold">+</span>
       <span>Add a New Item</span>
     </button>
+    <p id="garageLimitMsg" class="text-red-600 text-sm mt-2 hidden">
+  More than 2 addresses are not allowed.
+</p>
   </section>
 </div>
 
@@ -489,33 +586,39 @@ function toggleSection(checkboxId, sectionId) {
     if (sectionId) toggleSection(checkboxId, sectionId);
   });
 
-  // Garage Locations Show More Logic
   let visibleLocationCount = 1;
-  const maxLocations = 3;
+const maxLocations = 2;   // Only allow 2 locations
 
-  // Show only location 1, hide others on page load
-  for (let i = 1; i <= maxLocations; i++) {
-    const locDiv = document.getElementById(`location${i}`);
-    if (locDiv) locDiv.classList.toggle("hidden", i !== 1);
-  }
+// Show only location 1 on page load
+for (let i = 1; i <= maxLocations; i++) {
+  const locDiv = document.getElementById(`location${i}`);
+  if (locDiv) locDiv.classList.toggle("hidden", i !== 1);
+}
 
-  // Setup Add button click handler
-  const addBtn = document.getElementById("addGarageLocationBtn");
-  if (addBtn) {
-    addBtn.addEventListener("click", () => {
-      if (visibleLocationCount < maxLocations) {
-        visibleLocationCount++;
-        const locDiv = document.getElementById(`location${visibleLocationCount}`);
-        if (locDiv) locDiv.classList.remove("hidden");
+// Setup Add button click handler
+const addBtn = document.getElementById("addGarageLocationBtn");
+const garageLimitMsg = document.getElementById("garageLimitMsg");
 
-        if (visibleLocationCount === maxLocations) {
-          addBtn.disabled = true;
-          addBtn.classList.add("opacity-50", "cursor-not-allowed");
-        }
+if (addBtn) {
+  addBtn.addEventListener("click", () => {
+    if (visibleLocationCount < maxLocations) {
+      visibleLocationCount++;
+      const locDiv = document.getElementById(`location${visibleLocationCount}`);
+      if (locDiv) locDiv.classList.remove("hidden");
+
+      // If reached limit, disable button + show message
+      if (visibleLocationCount === maxLocations) {
+        addBtn.disabled = true;
+        addBtn.classList.add("opacity-50", "cursor-not-allowed");
+        garageLimitMsg.classList.remove("hidden");
       }
-    });
-  }
+    }
+  });
+}
+
+
 });
+
 
 
 
