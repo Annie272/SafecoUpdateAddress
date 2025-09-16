@@ -532,15 +532,15 @@ Mailing Address Information</h3>
       </div>
     </div>
     <div class="mt-4">
-    <label for="00NU70000072PuL" class="block text-sm font-medium text-gray-700 mb-1">
-      Do you want to assign a Vehicle to this Garaged Location
-    </label>
-    <select id="00NU70000072PuL" name="00NU70000072PuL" 
-      class="w-full p-2 border border-gray-300 rounded-lg">
-      <option value="">--Select--</option>
-      <option value="False">Yes</option>
-      <option value="True">No</option>
-    </select>
+    <label for="00NU700000736sr" class="block text-sm font-medium text-gray-700 mb-1">
+    Do you want to assign a Vehicle to this Garaged Location
+  </label>
+  <input
+    type="checkbox"
+    id="00NU700000736sr"
+    name="00NU700000736sr"
+    class="mr-2"
+  />
   </div>
   <div id="garage2VinField" class="mt-3 hidden">
     <label for="00NU700000616Sv" class="block text-sm font-medium text-gray-700 mb-3">
@@ -711,27 +711,29 @@ Mailing Address Information</h3>
   }
 
   // VIN option logic for Location 2
-  const vinOption = document.getElementById("00NU70000072PuL");
-  const vinField = document.getElementById("garage2VinField");
-  const noVinMsg = document.getElementById("garage2NoVinMsg");
-  const vinInput = document.getElementById("00NU700000616Sv");
+  const assignVehicleCheckbox = document.getElementById("00NU700000736sr");
+const vinField = document.getElementById("garage2VinField");
+const noVinMsg = document.getElementById("garage2NoVinMsg");
+const vinInput = document.getElementById("00NU700000616Sv");
 
-  vinOption?.addEventListener("change", () => {
-    if (vinOption.value === "Yes") {
-      vinField.classList.remove("hidden");
-      noVinMsg.classList.add("hidden");
-      vinInput.setAttribute("required", "true");
-    } else if (vinOption.value === "No") {
-      vinField.classList.add("hidden");
-      noVinMsg.classList.remove("hidden");
-      vinInput.removeAttribute("required");
-      vinInput.value = "";
-    } else {
-      vinField.classList.add("hidden");
-      noVinMsg.classList.add("hidden");
-      vinInput.removeAttribute("required");
-    }
-  });
+function handleAssignVehicleToggle() {
+  if (assignVehicleCheckbox.checked) {
+    // Checkbox checked: hide VIN field, show message, clear VIN required and input
+    vinField.classList.add("hidden");
+    noVinMsg.classList.remove("hidden");
+    vinInput.removeAttribute("required");
+    vinInput.value = "";
+  } else {
+    // Checkbox unchecked: show VIN field, hide message, require VIN
+    vinField.classList.remove("hidden");
+    noVinMsg.classList.add("hidden");
+    vinInput.setAttribute("required", "true");
+  }
+}
+if (assignVehicleCheckbox) {
+  assignVehicleCheckbox.addEventListener("change", handleAssignVehicleToggle);
+  handleAssignVehicleToggle(); // Initialize on load
+}
 
   function toggleSectionRequired(sectionId, isVisible) {
   const section = document.getElementById(sectionId);
