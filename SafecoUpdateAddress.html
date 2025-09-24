@@ -85,7 +85,7 @@
           name="00NU7000005zuNN"
           value="Update Address"
         />
-<!--  <input type="hidden" name="debug" value=1>                              
+<!-- <input type="hidden" name="debug" value=1>                              
 <input type="hidden" name="debugEmail" value="annie.rawal@caeliusconsulting.com"> -->
 
 
@@ -444,7 +444,7 @@ Mailing Address Information</h3>
   <label for="00NU700000616Sv" class="block text-sm font-medium text-gray-700 mb-3">
     Vehicle VIN
   </label>
-  <input type="text" id="00NU700000616Sv" name="00NU700000616Sv" class="w-full p-2 border border-gray-300 rounded-lg"  placeholder="List all vehicles (comma-separated) to link with this garage." />
+  <input type="text" id="00NU700000616Sv" name="00NU700000616Sv" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="List all vehicles (comma-separated) to link with this garage." />
 </div>
     <hr class="border-t border-gray-300 my-4" />
     </div>
@@ -597,17 +597,17 @@ Mailing Address Information</h3>
 
 
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const maxLocations = 2;
 
-  function toggleSectionRequired(sectionId, isVisible) {
+  // Utility to toggle required/disabled fields for a section
+  function toggleSectionRequired(sectionId, show) {
     const section = document.getElementById(sectionId);
     if (!section) return;
-    const inputs = section.querySelectorAll("input, select, textarea");
-    inputs.forEach(input => {
-      if (input.id === "00NU700000736sr" || input.id === "00NU70000074Dtt") return;
-      if (isVisible) {
+    section.querySelectorAll("input, select, textarea").forEach(input => {
+      if (input.id === "00NU700000736sr" || input.id === "00NU70000074Dtt") return; // skip garage checkboxes
+      if (show) {
         input.disabled = false;
         if (input.hasAttribute("data-visible-required") || input.hasAttribute("data-original-required")) {
           input.setAttribute("required", "true");
@@ -615,21 +615,23 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         input.disabled = true;
         input.removeAttribute("required");
-        input.setCustomValidity('');
         input.value = "";
+        input.setCustomValidity('');
         if (input.tagName.toLowerCase() === "select") input.selectedIndex = 0;
       }
     });
   }
 
-  ["mailingSection", "phoneSection", "garageSection"].forEach(sectionId => {
-    const sec = document.getElementById(sectionId);
+  // Initialize original required attributes
+  ["mailingSection", "phoneSection", "garageSection"].forEach(secId => {
+    const sec = document.getElementById(secId);
     if (!sec) return;
     sec.querySelectorAll("input, select, textarea").forEach(input => {
       if (input.hasAttribute("required")) input.setAttribute("data-original-required", "true");
     });
   });
 
+  // Toggle sections based on checkboxes
   function toggleSection(checkboxId, sectionId) {
     const checked = document.getElementById(checkboxId)?.checked;
     const section = document.getElementById(sectionId);
@@ -638,68 +640,65 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleSectionRequired(sectionId, checked);
     }
 
-     if (checkboxId === "showGarage") {
-            toggleLocationRequired("location1", checked);
-        }
+    if (checkboxId === "showGarage") toggleLocationRequired("location1", checked);
   }
 
   ["showMailing", "showPhone", "showGarage"].forEach(checkboxId => {
-    let sectionId = checkboxId === "showMailing" ? "mailingSection" :
-                    checkboxId === "showPhone" ? "phoneSection" :
-                    checkboxId === "showGarage" ? "garageSection" : null;
+    const sectionId = checkboxId === "showMailing" ? "mailingSection" :
+                      checkboxId === "showPhone" ? "phoneSection" :
+                      checkboxId === "showGarage" ? "garageSection" : null;
     const checkbox = document.getElementById(checkboxId);
     if (!checkbox) return;
     checkbox.addEventListener("change", () => toggleSection(checkboxId, sectionId));
-    toggleSection(checkboxId, sectionId);
+    toggleSection(checkboxId, sectionId); // initial toggle
   });
 
+  // Garage location toggle logic
   function toggleLocationRequired(locationId, show) {
-    const locDiv = document.getElementById(locationId);
-    if (!locDiv) return;
-    const inputs = locDiv.querySelectorAll("input, select, textarea");
-    inputs.forEach(input => {
-      if ((locationId === "location1" && input.id === "00NU700000736sr") ||
-          (locationId === "location2" && input.id === "00NU70000074Dtt")) {
-        input.disabled = false;
-        return;
-      }
-      if (input.id === "00NU7000006qtTB" || input.id === "00NU7000006qthh") {
-        if (show) {
-          input.required = false;
-          input.disabled = false;
-        } else {
-          input.disabled = true;
-        }
-        return;
-      }
+  const locDiv = document.getElementById(locationId);
+  if (!locDiv) return;
 
-
-
-      if (show && document.getElementById("showGarage").checked) {
-    input.required = true;
-    input.disabled = false;
-} else {
-    input.required = false;
-    input.value = '';
-    input.setCustomValidity('');
-    input.disabled = true;
+  locDiv.querySelectorAll("input, select, textarea").forEach(input => {
+    // Always allow the "assign vehicles" checkbox to remain enabled
+    if (
+      (locationId === "location1" && input.id === "00NU700000736sr") ||
+      (locationId === "location2" && input.id === "00NU70000074Dtt")
+    ) {
+      input.disabled = false;
+      return;
+    }
+    // Address line 2 can stay optional and enabled only when shown
+    if (input.id.endsWith("TB") || input.id.endsWith("hh")) {
+      input.disabled = !show;
+      input.required = false;
+      return;
+    }
+    // Main handling
+    if (show) {
+      input.disabled = false;
+      // Only require fields if visible location 1, or if location 2 is shown and the assign vehicle checkbox is checked
+      input.required = !!input.getAttribute("data-visible-required");
+    } else {
+      input.disabled = true;
+      input.required = false;
+      input.value = "";
+      input.setCustomValidity('');
+      if (input.tagName.toLowerCase() === "select") input.selectedIndex = 0;
+    }
+  });
+  locDiv.classList.toggle("hidden", !show);
 }
 
 
-    });
-    locDiv.classList.toggle("hidden", !show);
+  // Initialize locations
+  let visibleLocationCount = 1;
+  for (let i = 1; i <= maxLocations; i++) {
+    toggleLocationRequired(`location${i}`, i === 1 && document.getElementById("showGarage").checked);
   }
 
-  // Init locations
-  for (let i = 1; i <= maxLocations; i++) {
-    const show = i === 1 && document.getElementById("showGarage").checked;
-    toggleLocationRequired(`location${i}`, show);
-}
-
+  // Add Location button
   const addBtn = document.getElementById("addGarageLocationBtn");
   const garageLimitMsg = document.getElementById("garageLimitMsg");
-  let visibleLocationCount = 1;
-
   if (addBtn) {
     addBtn.addEventListener("click", () => {
       if (visibleLocationCount < maxLocations) {
@@ -716,180 +715,91 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Location 1 VIN
+  // Assign vehicle toggle logic
+  function handleAssignVehicle(checkbox, vinField, vinInput) {
+    if (checkbox.checked) {
+      vinField.classList.remove("hidden");
+      vinInput.disabled = false;
+      vinInput.required = true;
+    } else {
+      vinField.classList.add("hidden");
+      vinInput.value = "";
+      vinInput.disabled = true;
+      vinInput.required = false;
+      vinInput.setCustomValidity("");
+    }
+  }
+
   const location1Checkbox = document.getElementById("00NU700000736sr");
   const location1VinField = document.getElementById("location1VinField");
   const location1VinInput = document.getElementById("00NU700000616Sv");
+  location1Checkbox.addEventListener("change", () => handleAssignVehicle(location1Checkbox, location1VinField, location1VinInput));
+  handleAssignVehicle(location1Checkbox, location1VinField, location1VinInput);
 
-  function handleLocation1AssignVehicleToggle() {
-    if (location1Checkbox.checked) {
-      location1VinField.classList.remove("hidden");
-      location1VinInput.disabled = false;
-      location1VinInput.setAttribute("required", "true");
-    } else {
-      location1VinField.classList.add("hidden");
-      location1VinInput.value = "";
-      location1VinInput.disabled = true;
-      location1VinInput.removeAttribute("required");
-      location1VinInput.setCustomValidity("");
-    }
-  }
-  location1Checkbox.addEventListener("change", handleLocation1AssignVehicleToggle);
-  handleLocation1AssignVehicleToggle();
-
-  // Location 2 VIN
   const location2Checkbox = document.getElementById("00NU70000074Dtt");
   const location2VinField = document.getElementById("garage2VinField");
   const location2VinInput = document.getElementById("00NU7000006Knh3");
-
-  function handleLocation2AssignVehicleToggle() {
-    if (location2Checkbox.checked) {
-      location2VinField.classList.remove("hidden");
-      location2VinInput.disabled = false;
-      location2VinInput.setAttribute("required", "true");
-    } else {
-      location2VinField.classList.add("hidden");
-      location2VinInput.value = "";
-      location2VinInput.disabled = true;
-      location2VinInput.removeAttribute("required");
-      location2VinInput.setCustomValidity("");
-    }
-  }
-  location2Checkbox.addEventListener("change", handleLocation2AssignVehicleToggle);
-  handleLocation2AssignVehicleToggle();
+  location2Checkbox.addEventListener("change", () => handleAssignVehicle(location2Checkbox, location2VinField, location2VinInput));
+  handleAssignVehicle(location2Checkbox, location2VinField, location2VinInput);
 
   // Delete Location 2
-  const deleteBtn = document.getElementById("deleteLocation2Btn");
-  deleteBtn?.addEventListener("click", () => {
+  document.getElementById("deleteLocation2Btn")?.addEventListener("click", () => {
     toggleLocationRequired("location2", false);
     visibleLocationCount = 1;
     addBtn.disabled = false;
     addBtn.classList.remove("opacity-50", "cursor-not-allowed");
     garageLimitMsg.classList.add("hidden");
     location2Checkbox.checked = false;
-    handleLocation2AssignVehicleToggle();
+    handleAssignVehicle(location2Checkbox, location2VinField, location2VinInput);
   });
 
-  // Policy number + date logic (unchanged)
+  toggleLocationRequired("location2", false);
+
+
+  // Policy Number Validation
   const policyNumberInput = document.getElementById("00NU7000005zuX3");
   const policyNumberError = document.getElementById("policyNumberError");
-  function validatePolicyNumberField() {
+  function validatePolicyNumber() {
     const val = policyNumberInput.value.trim();
     const valid = /^Y\d{7}$/.test(val);
     policyNumberInput.classList.toggle("error", !valid && val.length > 0);
     policyNumberError.classList.toggle("hidden", valid || val.length === 0);
     policyNumberInput.setCustomValidity(valid || val.length === 0 ? "" : "Policy Number must start with 'Y' and be 8 characters (e.g., Y1234567)");
   }
-  if (policyNumberInput) {
-    policyNumberInput.addEventListener("input", validatePolicyNumberField);
-    policyNumberInput.addEventListener("blur", validatePolicyNumberField);
-    validatePolicyNumberField();
-  }
+  policyNumberInput.addEventListener("input", validatePolicyNumber);
+  policyNumberInput.addEventListener("blur", validatePolicyNumber);
+  validatePolicyNumber();
 
-  function parseMMDDYYYY(s) {
-    if (!/^(\d{2})\/(\d{2})\/(\d{4})$/.test(s)) return null;
-    const [m, d, y] = s.split('/').map(Number);
-    if (m < 1 || m > 12 || d < 1 || d > 31) return null;
-    const date = new Date(y, m - 1, d);
-    if (date.getMonth() !== m - 1 || date.getDate() !== d || date.getFullYear() !== y) return null;
-    return date;
-  }
+  // Date Validation
   const dateField = document.getElementById("00NU7000005zuLl");
   const dateErrorDiv = document.getElementById("00NU7000005zuLl_error");
-  function showDateError(field, show) {
-    if (dateErrorDiv) dateErrorDiv.classList.toggle("hidden", !show);
-    if (field) field.classList.toggle("error", show);
+  function parseMMDDYYYY(s) {
+    if (!/^(\d{2})\/(\d{2})\/(\d{4})$/.test(s)) return null;
+    const [m,d,y] = s.split("/").map(Number);
+    const date = new Date(y, m-1, d);
+    return (date.getMonth() === m-1 && date.getDate() === d && date.getFullYear() === y) ? date : null;
+  }
+  function showDateError(show) {
+    dateErrorDiv.classList.toggle("hidden", !show);
+    dateField.classList.toggle("error", show);
   }
   if (typeof Pikaday !== "undefined" && dateField) {
-    new Pikaday({ field: dateField, format: 'MM/DD/YYYY', onSelect(date) {
-      if (date) {
-        dateField.value = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear();
-        showDateError(dateField, false);
-      }
+    new Pikaday({ field: dateField, format: 'MM/DD/YYYY', onSelect: date => {
+      if (date) dateField.value = `${("0"+(date.getMonth()+1)).slice(-2)}/${("0"+date.getDate()).slice(-2)}/${date.getFullYear()}`;
+      showDateError(false);
     }});
   }
-  if (dateField) {
-    dateField.addEventListener('input', function () {
-      const valid = !dateField.value || parseMMDDYYYY(dateField.value);
-      showDateError(dateField, !valid);
-      dateField.setCustomValidity(valid ? "" : "Invalid date format (MM/DD/YYYY)");
-    });
-    dateField.addEventListener('blur', function () {
-      const valid = !dateField.value || parseMMDDYYYY(dateField.value);
-      showDateError(dateField, !valid);
-      dateField.setCustomValidity(valid ? "" : "Invalid date format (MM/DD/YYYY)");
-    });
-  }
+  dateField.addEventListener("input", () => {
+    const valid = !dateField.value || parseMMDDYYYY(dateField.value) !== null;
+    showDateError(!valid);
+  });
 
-  // Form submit
-  const mainForm = document.getElementById("mainForm");
-  if (mainForm) {
-   mainForm.addEventListener('submit', function (e) {
-  // Enable garage checkboxes so hidden inputs get correct values
-  if (location1Checkbox) {
-    const hidden1 = document.getElementById("garage1AssignHidden");
-    hidden1.value = location1Checkbox.checked ? "false" : "true";
-    location1Checkbox.disabled = true; // prevent submitting the raw checkbox
-  }
-
-  if (location2Checkbox) {
-    const hidden2 = document.getElementById("garage2AssignHidden");
-    hidden2.value = location2Checkbox.checked ? "false" : "true";
-    location2Checkbox.disabled = true;
-  }
-
-  // Validate policy number
-  if (policyNumberInput) {
-    validatePolicyNumberField();
-    if (!/^Y\d{7}$/.test(policyNumberInput.value.trim())) {
-      policyNumberInput.focus();
-      e.preventDefault();
-      return;
-    }
-  }
-
-  // Validate date
-  if (dateField && !parseMMDDYYYY(dateField.value)) {
-    showDateError(dateField, true);
-    dateField.focus();
-    e.preventDefault();
-    return;
-  }
-
-  // Check native HTML5 validation for all visible inputs
-  const invalid = mainForm.querySelector(":invalid");
-  if (invalid) {
-    e.preventDefault();
-    invalid.scrollIntoView({ behavior: "smooth", block: "center" });
-    invalid.focus();
-    return;
-  }
-});
-
-  }
-
-  // Delete Location 2 button (also hide garage1 assignment + disclaimer)
-  const deleteLocation2Btn = document.getElementById('deleteLocation2Btn');
-  if (deleteLocation2Btn) {
-    deleteLocation2Btn.addEventListener('click', function() {
-      const location2Div = document.getElementById('location2');
-      if (location2Div) {
-        toggleLocationRequired('location2', false);
-        location2Div.classList.add('hidden');
-      }
-      visibleLocationCount = Math.max(1, visibleLocationCount - 1);
-
-      if (addBtn) {
-        addBtn.disabled = false;
-        addBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-      }
-      if (garageLimitMsg) garageLimitMsg.classList.add('hidden');
-
-      if (garage1AssignContainer) garage1AssignContainer.classList.add('hidden');
-      if (garage1Disclaimer) garage1Disclaimer.classList.add('hidden');
-    });
-  }
-
+  // Form submit handler to set hidden garage checkbox values
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", () => {
+    document.getElementById("garage1AssignHidden").value = location1Checkbox.checked ? "false" : "true";
+    document.getElementById("garage2AssignHidden").value = location2Checkbox.checked ? "false" : "true";
+  });
 });
 </script>
 
