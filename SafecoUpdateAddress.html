@@ -946,7 +946,7 @@ const form = document.getElementById("mainForm");
     missingFormDataInput.value = missing.join("\n");
 
     if (missing.length) {
-      dialogTitle.textContent = "Mandatory Fields Missing - Please review:";
+      dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
       missingFieldsList.innerHTML = missing.map(f => `<li>${f}</li>`).join("");
     } else {
       dialogTitle.textContent = "All mandatory fields completed. Ready to submit?";
