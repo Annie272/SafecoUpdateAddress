@@ -813,13 +813,13 @@ const form = document.getElementById("mainForm");
   // Define fields to validate and capture (add others as needed)
   const fieldData = [
     { id: "email", label: "Email", type: "email" },
-  { id: "00NU7000006IOzh", label: "Request Type", type: "radio" },
+  { id: "Is_this_a_quote_or_a_change_request__c", label: "Request Type", type: "radio" },
   { id: "00NU7000005zuX3", label: "Policy Number", type: "text" },
   { id: "00NU7000005zuLl", label: "Effective Date", type: "date" },
 
  // Mailing Address Information (validate if mailingSection visible)
   { id: "00NU7000006YRFF", label: "Address Line 1", type: "text", sectionId: "mailingSection" },
-  { id: "00NU7000006YTXB", label: "Address Line 2", type: "text", sectionId: "mailingSection" },
+ // { id: "00NU7000006YTXB", label: "Address Line 2", type: "text", sectionId: "mailingSection" },
   { id: "00NU7000006cbfp", label: "Zip Code", type: "text", sectionId: "mailingSection" },
   { id: "00NU7000005zvUj", label: "City", type: "text", sectionId: "mailingSection" },
   { id: "00NU7000005zvWL", label: "State", type: "select", sectionId: "mailingSection" },
@@ -829,7 +829,7 @@ const form = document.getElementById("mainForm");
   { id: "00NU7000006qr9e", label: "Email Address", type: "email", sectionId: "phoneSection" },
 
  { id: "00NU7000006qtOL", label: "Address Line 1", type: "text", sectionId: "location1" },
-{ id: "00NU7000006qtTB", label: "Address Line 2", type: "text", sectionId: "location1" },
+//{ id: "00NU7000006qtTB", label: "Address Line 2", type: "text", sectionId: "location1" },
 { id: "00NU7000006qtZd", label: "ZIP Code",        type: "text",  sectionId: "location1" },
 { id: "00NU7000006qtcr", label: "City",            type: "text",  sectionId: "location1" },
 { id: "00NU7000006qteT", label: "State",           type: "select",sectionId: "location1" },
@@ -838,7 +838,7 @@ const form = document.getElementById("mainForm");
 
 // Garage Location 2
 { id: "00NU7000006qtg5", label: "Address Line 1", type: "text",   sectionId: "location2" },
-{ id: "00NU7000006qthh", label: "Address Line 2", type: "text",   sectionId: "location2" },
+//{ id: "00NU7000006qthh", label: "Address Line 2", type: "text",   sectionId: "location2" },
 { id: "00NU7000006qtjJ", label: "ZIP Code",       type: "text",   sectionId: "location2" },
 { id: "00NU7000006qsRW", label: "City",           type: "text",   sectionId: "location2" },
 { id: "00NU7000006quYv", label: "State",          type: "select", sectionId: "location2" },
