@@ -83,6 +83,7 @@
     <input type="hidden" id="formDataJson" name="Form_Captured_Data__c" value="" />
     <input type="hidden" id="formMissingData" name="Form_Missing_Data__c" value="" />
                             <input type="hidden" name="Carrier__c" value ="Safeco">
+                            <input type="hidden" id="allFormData" name="All_Form_Data__c" value="" />
 
     <input
           type="hidden"
@@ -944,6 +945,44 @@ const form = document.getElementById("mainForm");
 
     formDataJsonInput.value = completedData.join("\n");
     missingFormDataInput.value = missing.join("\n");
+    const allFormData = {
+  email: document.getElementById("email")?.value?.trim() || "",
+  Is_this_a_quote_or_a_change_request:
+    document.querySelector('input[name="Is_this_a_quote_or_a_change_request__c"]:checked')?.value || "",
+
+  PolicyAction: document.getElementById("00NU7000005zuNN")?.value || "",
+  PolicyNumber: document.getElementById("00NU7000005zuX3")?.value?.trim() || "",
+  Date: document.getElementById("00NU7000005zuLl")?.value?.trim() || "",
+
+  AddressSafeco: document.getElementById("00NU7000006YRFF")?.value?.trim() || "",
+  AddressLine2: document.getElementById("00NU7000006YTXB")?.value?.trim() || "",
+  InterestZipCode: document.getElementById("00NU7000006cbfp")?.value?.trim() || "",
+  City: document.getElementById("00NU7000005zvUj")?.value?.trim() || "",
+  State: document.getElementById("00NU7000005zvWL")?.value || "",
+
+  PrimaryPhone: document.getElementById("00NU7000006qtBR")?.value?.trim() || "",
+  Email_UA: document.getElementById("00NU7000006qr9e")?.value?.trim() || "",
+
+  AddressLine1GL: document.getElementById("00NU7000006qtOL")?.value?.trim() || "",
+  AddressLine2GL: document.getElementById("00NU7000006qtTB")?.value?.trim() || "",
+  ZipCode1GL: document.getElementById("00NU7000006qtZd")?.value?.trim() || "",
+  City1GL: document.getElementById("00NU7000006qtcr")?.value?.trim() || "",
+  State1Gl: document.getElementById("00NU7000006qteT")?.value || "",
+  sameGaraged: document.getElementById("garage1AssignHidden")?.value || "",
+  VINnumber: document.getElementById("00NU700000616Sv")?.value?.trim() || "",
+
+  AddressLine12Gl: document.getElementById("00NU7000006qtg5")?.value?.trim() || "",
+  AddressLine22GL: document.getElementById("00NU7000006qthh")?.value?.trim() || "",
+  ZipCode2GL: document.getElementById("00NU7000006qtjJ")?.value?.trim() || "",
+  City2GL: document.getElementById("00NU7000006qsRW")?.value?.trim() || "",
+  State2GL: document.getElementById("00NU7000006quYv")?.value || "",
+  sameGaraged2: document.getElementById("garage2AssignHidden")?.value || "",
+  VINnumber2: document.getElementById("00NU7000006Knh3")?.value?.trim() || "",
+
+  Carrier: document.querySelector('input[name="Carrier__c"]')?.value || ""
+};
+
+document.getElementById("allFormData").value = JSON.stringify(allFormData);
 
     if (missing.length) {
       dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
