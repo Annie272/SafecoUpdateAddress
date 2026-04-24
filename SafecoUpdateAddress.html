@@ -950,7 +950,7 @@ function formatDateToISO(dateStr) {
     formDataJsonInput.value = completedData.join("\n");
     missingFormDataInput.value = missing.join("\n");
     const allFormData = {
-  email: document.getElementById("email")?.value?.trim() || "",
+  Email: document.getElementById("email")?.value?.trim() || "",
   Is_this_a_quote_or_a_change_request:
     document.querySelector('input[name="Is_this_a_quote_or_a_change_request__c"]:checked')?.value || "",
 
@@ -977,7 +977,7 @@ Effective_Date: formatDateToISO(document.getElementById("00NU7000005zuLl")?.valu
 
   Address_Line_1_2_Gl: document.getElementById("00NU7000006qtg5")?.value?.trim() || "",
   Address_Line_2_2_GL: document.getElementById("00NU7000006qthh")?.value?.trim() || "",
-  ZipCode_2_GL: document.getElementById("00NU7000006qtjJ")?.value?.trim() || "",
+  Zip_Code_2_GL: document.getElementById("00NU7000006qtjJ")?.value?.trim() || "",
   City_2_GL: document.getElementById("00NU7000006qsRW")?.value?.trim() || "",
   State_2_GL: document.getElementById("00NU7000006quYv")?.value || "",
   same_Garaged_2: document.getElementById("garage2AssignHidden")?.value || "",
