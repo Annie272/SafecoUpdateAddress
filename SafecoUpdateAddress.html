@@ -924,7 +924,11 @@ const form = document.getElementById("mainForm");
   reviewBtn.textContent = "Review and Submit";
   reviewBtn.className = "bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl hover:bg-blue-700 transition w-full mt-4";
   form.appendChild(reviewBtn);
-
+function formatDateToISO(dateStr) {
+  if (!dateStr || !/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) return "";
+  const [month, day, year] = dateStr.split("/");
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
   reviewBtn.addEventListener("click", () => {
     const missing = validateFields();
 
@@ -950,9 +954,9 @@ const form = document.getElementById("mainForm");
   Is_this_a_quote_or_a_change_request:
     document.querySelector('input[name="Is_this_a_quote_or_a_change_request__c"]:checked')?.value || "",
 
-  PolicyAction: document.getElementById("00NU7000005zuNN")?.value || "",
-  PolicyNumber: document.getElementById("00NU7000005zuX3")?.value?.trim() || "",
-  Date: document.getElementById("00NU7000005zuLl")?.value?.trim() || "",
+  Policy_Action: document.getElementById("00NU7000005zuNN")?.value || "",
+  Policy_Number: document.getElementById("00NU7000005zuX3")?.value?.trim() || "",
+Effective_Date: formatDateToISO(document.getElementById("00NU7000005zuLl")?.value?.trim() || ""),
 
   AddressSafeco: document.getElementById("00NU7000006YRFF")?.value?.trim() || "",
   AddressLine2: document.getElementById("00NU7000006YTXB")?.value?.trim() || "",
